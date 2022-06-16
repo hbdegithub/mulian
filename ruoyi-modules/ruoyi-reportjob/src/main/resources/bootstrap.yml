@@ -1,0 +1,28 @@
+# Tomcat
+server:
+  port: 7777
+
+# Spring
+spring: 
+  application:
+    # 应用名称
+    name: ruoyi-reportjob-dev
+  profiles:
+    # 环境配置
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        # 服务注册地址
+        server-addr: 121.199.72.30:8848
+      config:
+        # 配置中心地址
+        server-addr: 121.199.72.30:8848
+        # 配置文件格式
+        file-extension: yml
+        # 共享配置
+        shared-configs:
+          - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  main:
+    #允许存在多个Feign调用相同Service的接口
+    allow-bean-definition-overriding: true
